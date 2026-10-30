@@ -1,0 +1,12 @@
+# a failed run keeps its partial rows under another name, and a download in flight ends in .part
+results/*.failed
+results/*.part
+
+# notebook and Python leftovers
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# editor and system files
+.DS_Store
+.vscode/

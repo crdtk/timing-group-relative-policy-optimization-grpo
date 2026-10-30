@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="384" viewBox="0 0 900 384" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<rect width="900" height="384" fill="#fcfcfb"/>
+<text x="30" y="44" font-size="22" font-weight="700" fill="#0b0b0b">Where one training step spends its time</text>
+<text x="30" y="70" font-size="14" fill="#52514e">Qwen3 0.6B learning with Group Relative Policy Optimization on a Google Colab T4. Each bar is 100% of one step, averaged over the steps of one run.</text>
+<text x="30" y="126" font-size="14" font-weight="600" fill="#0b0b0b">T4, batched, batch 2</text>
+<text x="30" y="144" font-size="12" fill="#6b6a66">run 2026-10-30-15-13, 11.6 s a step</text>
+<rect x="250.0" y="110" width="531.7" height="30" fill="#2a78d6"/>
+<text x="515.9" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">87%</text>
+<rect x="781.7" y="110" width="44.8" height="30" fill="#eb6834"/>
+<text x="804.1" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">7%</text>
+<rect x="826.5" y="110" width="24.0" height="30" fill="#1baf7a"/>
+<rect x="850.5" y="110" width="6.8" height="30" fill="#7a5cc7"/>
+<rect x="857.4" y="110" width="2.5" height="30" fill="#a8a7a1"/>
+<text x="30" y="172" font-size="14" font-weight="600" fill="#0b0b0b">T4, batched, batch 2</text>
+<text x="30" y="190" font-size="12" fill="#6b6a66">run 2026-10-30-15-26, 12.1 s a step</text>
+<rect x="250.0" y="156" width="536.1" height="30" fill="#2a78d6"/>
+<text x="518.0" y="176" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">88%</text>
+<rect x="786.1" y="156" width="42.1" height="30" fill="#eb6834"/>
+<text x="807.1" y="176" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">7%</text>
+<rect x="828.2" y="156" width="22.6" height="30" fill="#1baf7a"/>
+<rect x="850.8" y="156" width="6.6" height="30" fill="#7a5cc7"/>
+<rect x="857.4" y="156" width="2.4" height="30" fill="#a8a7a1"/>
+<rect x="30" y="208" width="14" height="14" fill="#2a78d6"/>
+<text x="52" y="220" font-size="13" fill="#0b0b0b"><tspan font-weight="600">generation</tspan> <tspan fill="#52514e">the model writes its answers, 87.5% on average</tspan></text>
+<rect x="30" y="230" width="14" height="14" fill="#eb6834"/>
+<text x="52" y="242" font-size="13" fill="#0b0b0b"><tspan font-weight="600">backward</tspan> <tspan fill="#52514e">gradients are computed, 7.1% on average</tspan></text>
+<rect x="30" y="252" width="14" height="14" fill="#1baf7a"/>
+<text x="52" y="264" font-size="13" fill="#0b0b0b"><tspan font-weight="600">logprob</tspan> <tspan fill="#52514e">the model scores its own answers, 3.8% on average</tspan></text>
+<rect x="30" y="274" width="14" height="14" fill="#7a5cc7"/>
+<text x="52" y="286" font-size="13" fill="#0b0b0b"><tspan font-weight="600">optimizer</tspan> <tspan fill="#52514e">the weights change, 1.1% on average</tspan></text>
+<rect x="30" y="296" width="14" height="14" fill="#a8a7a1"/>
+<text x="52" y="308" font-size="13" fill="#0b0b0b"><tspan font-weight="600">other</tspan> <tspan fill="#52514e">everything else, 0.4% on average</tspan></text>
+<rect x="30" y="318" width="14" height="14" fill="#d4d3cd"/>
+<text x="52" y="330" font-size="13" fill="#0b0b0b"><tspan font-weight="600">scoring</tspan> <tspan fill="#52514e">the checker marks each answer, 0.0% on average</tspan></text>
+</svg>
