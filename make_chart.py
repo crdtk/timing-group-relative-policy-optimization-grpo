@@ -26,7 +26,8 @@ def shares(path):
     wall = statistics.mean(float(r["wall_s"]) for r in use)
     out = {s: 100 * statistics.mean(float(r[f"{s}_s"]) for r in use) / wall for s, _, _ in STAGES}
     meta = rows[0]
-    label = f"{meta['gpu'].replace('Tesla-', '')}, {meta['script']}, batch {meta['batch']}"
+    batch = "" if meta["script"] == "basic" else f", batch {meta['batch']}"  # the basic script has no batch
+    label = f"{meta['gpu'].replace('Tesla-', '')}, {meta['script']}{batch}, {len(rows)} steps"
     return label, meta["run"], out, wall
 
 

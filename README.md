@@ -94,20 +94,22 @@ The script is Raschka's, from [rasbt/reasoning-from-scratch](https://github.com/
 
 ## Results
 
-Both runs use the batched script, batch 2, 4 rollouts, 256 tokens, seed 42 and a Tesla T4. Each run took ten steps. Step 1 is left out of the means, because it includes warm-up work.
+Four runs on a Tesla T4 with 4 rollouts, 256 tokens and seed 42. Step 1 is left out of the means, because it includes warm-up work.
 
-| Stage | Run 1, seconds | Run 1, share | Run 2, seconds | Run 2, share |
-|---|---|---|---|---|
-| generation | 10.11 | 87.2% | 10.59 | 87.9% |
-| backward | 0.85 | 7.3% | 0.83 | 6.9% |
-| logprob | 0.46 | 3.9% | 0.45 | 3.7% |
-| optimizer | 0.13 | 1.1% | 0.13 | 1.1% |
-| other | 0.05 | 0.4% | 0.05 | 0.4% |
-| scoring | 0.00 | 0.0% | 0.00 | 0.0% |
-| one step | 11.6 | | 12.1 | |
-| speed, tokens per second | 18.1 | | 17.5 | |
+| Run | Script | Batch | Steps finished | Generation | Backward | Logprob | Optimizer | Tokens per second |
+|---|---|---|---|---|---|---|---|---|
+| `2026-10-30-18-42` | basic | none | 10 | 86.7% | 7.4% | 4.0% | 1.2% | 17.1 |
+| `2026-10-30-15-13` | batched | 2 | 10 | 87.2% | 7.3% | 3.9% | 1.1% | 18.1 |
+| `2026-10-30-15-26` | batched | 2 | 10 | 87.9% | 6.9% | 3.7% | 1.1% | 17.5 |
+| `2026-10-30-18-46` | batched | 4 | 8 | 82.5% | 10.3% | 5.7% | 1.1% | 45.6 |
 
-The files are `results/2026-10-30-15-13-T4.csv` and `results/2026-10-30-15-26-T4.csv`. Both runs share one seed. Their rewards match step by step.
+- Generation takes 82 to 88% of every step in all four runs.
+- A batch of four rollouts writes 2.7 times more tokens per second than the basic script.
+- A batch of four ran out of memory in step 9. The CSV holds the 8 steps before the error.
+- A batch of two gains 2 to 6% over the basic script.
+- The two batch 2 runs share one seed. Their rewards match step by step.
+
+The CSV files sit in `results/`, one per run.
 
 ## Run it yourself
 
@@ -149,11 +151,12 @@ One CSV per run in `results/`, named `YYYY-MM-DD-HH-MM-<GPU><settings>.csv`. Eve
 | Timing | `generation_s`, `scoring_s`, `logprob_s`, `backward_s`, `optimizer_s`, `timed_s`, `wall_s`, `other_s`, `tokens_per_sec` |
 | Training | `avg_response_len`, `reward_avg`, `loss` |
 
-A failed run, for example out of memory, keeps its partial rows as `<name>.csv.failed`.
+An error inside the notebook, such as out of memory, still saves the finished steps. Count the rows. A full run has one row per step. A failed Colab command leaves a `.csv.failed` file.
 
 ## Limits
 
 - Ten steps and one seed.
+- A batch of four does not finish ten steps on a T4.
 - The base model writes short answers.
 - Most steps scored zero reward. Backward ran on a zero loss. The skip setting awaits a measurement.
 - One GPU type. Other cards may split the time differently.

@@ -4,7 +4,8 @@
 #   make                                  results/2026-10-30-14-20-T4.csv, the notebook's defaults
 #   make SCRIPT=basic BATCH=4             settings you name reach the notebook and the file name
 #   make CSV=my-run.csv                   or name the file yourself; the first run asks for a Google sign-in
-# A failed run (out of memory, say) keeps its partial rows as <name>.csv.failed. Commit the CSV files.
+# If colab exec itself fails, the partial rows keep the name <name>.csv.failed. A cell that raises an error, such as out of
+# memory, still ends in <name>.csv with the steps finished so far. Count the rows. Commit the CSV files.
 # The run executes a temporary copy of the notebook, so the output notebook that colab exec writes never lands here.
 #   make chart                            redraw docs/stage-breakdown.svg from the CSV files in results/
 
